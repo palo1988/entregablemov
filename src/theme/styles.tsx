@@ -29,10 +29,35 @@ export const styles = StyleSheet.create({
     marginVertical: 50,
     fontSize: 20,
   },
-  headerHome: {
+  header: {
     flexDirection: "row",
     gap: 15,
     alignItems: "center",
     fontSize: 60,
+  },
+  icon: {
+    alignItems: "flex-end",
+    flex: 1,
+  },
+  Modal: {
+    padding: 20,
+    marginHorizontal: 20,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+  },
+  rootListProduct: {
+    flexDirection: "row",
+    padding: 10,
+    alignItems: "center",
+    gap: 20,
+  },
+  fab: {
+    position: "absolute",
+    bottom: 20,
+    right: 15,
+  },
+  rootInputsProduct: {
+    flexDirection: "row",
+    gap: 35,
   },
 });

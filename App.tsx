@@ -12,7 +12,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <PaperProvider>
-        <Text>hola mundo</Text>
         <StackNavigator />
       </PaperProvider>
     </NavigationContainer>
