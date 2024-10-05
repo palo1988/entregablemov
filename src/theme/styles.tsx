@@ -60,4 +60,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 35,
   },
+  rootDetail: {
+    flex: 1,
+    padding: 20,
+    marginTop: 20,
+    backgroundColor: "#2E8BAFFF",
+  },
 });

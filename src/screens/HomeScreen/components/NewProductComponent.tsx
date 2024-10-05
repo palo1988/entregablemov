@@ -12,7 +12,7 @@ import {
 } from "react-native-paper";
 import { styles } from "../../../theme/styles";
 import { push, ref, set } from "firebase/database";
-import { dbRealTime } from "../../../../config/firebaseConfig";
+import { auth, dbRealTime } from "../../../../config/firebaseConfig";
 //interface-props
 interface Props {
   showModalProduct: boolean;
@@ -20,8 +20,8 @@ interface Props {
 }
 // interface formProduct
 interface FormProduct {
-  code: string;
-  nameProduct: string;
+  banda: string;
+  album: string;
   price: number;
   stock: number;
   description: string;
@@ -39,8 +39,8 @@ const NewProductComponent = ({
 }: Props) => {
   //hook useState:cambiar el estado del formulario
   const [formProduct, setformProduct] = useState<FormProduct>({
-    code: "",
-    nameProduct: "",
+    banda: "",
+    album: "",
     price: 0,
     stock: 0,
     description: "",
@@ -58,8 +58,8 @@ const NewProductComponent = ({
   //funcion guardar los productos
   const handleSaveProduct = async () => {
     if (
-      !formProduct.code ||
-      !formProduct.nameProduct ||
+      !formProduct.banda ||
+      !formProduct.album ||
       !formProduct.price ||
       !formProduct.stock ||
       !formProduct.description
@@ -73,7 +73,7 @@ const NewProductComponent = ({
     }
     //console.log(formProduct);
     //1 crear direccionar a base de datos
-    const dbRef = ref(dbRealTime, "discos");
+    const dbRef = ref(dbRealTime, "discos/" + auth.currentUser?.uid);
     //2 crear coleccion que agregue los datos en la dbRef
     const saveProduct = push(dbRef);
     //almacenar datos en basededatos
@@ -106,14 +106,14 @@ const NewProductComponent = ({
           </View>
           <Divider />
           <TextInput
-            label="Codigo"
+            label="Banda"
             mode="outlined"
-            onChangeText={(value) => handleSetValues("code", value)}
+            onChangeText={(value) => handleSetValues("banda", value)}
           />
           <TextInput
-            label="Nombre"
+            label="Album"
             mode="outlined"
-            onChangeText={(value) => handleSetValues("nameProduct", value)}
+            onChangeText={(value) => handleSetValues("album", value)}
           />
           <View style={styles.rootInputsProduct}>
             <TextInput

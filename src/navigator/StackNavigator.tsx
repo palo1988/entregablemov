@@ -8,11 +8,14 @@ import { auth } from "../../config/firebaseConfig";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { View } from "react-native";
 import { styles } from "../theme/styles";
+import DetailProductScreen from "../screens/HomeScreen/DetailProductScreen";
 
 //interface- routes(stackScreen)
 interface Routes {
   name: string;
   screen: () => JSX.Element; //componente React
+  headerShow?: boolean;
+  title?: string;
 }
 
 //arreglo routes cuando el user no este autenticado
@@ -22,7 +25,15 @@ const routesNoAuth: Routes[] = [
 ];
 
 //arreglo routes cuando el user este autenticado
-const routesAuth: Routes[] = [{ name: "Home", screen: HomeScreen }];
+const routesAuth: Routes[] = [
+  { name: "Home", screen: HomeScreen },
+  {
+    name: "Detail",
+    screen: DetailProductScreen,
+    headerShow: true,
+    title: "DetalleDISCOS",
+  },
+];
 
 const Stack = createStackNavigator();
 
@@ -73,7 +84,10 @@ export const StackNavigator = () => {
                 <Stack.Screen
                   key={index}
                   name={item.name}
-                  options={{ headerShown: false }}
+                  options={{
+                    headerShown: item.headerShow ?? false,
+                    title: item.headerShow ? item.title : "",
+                  }}
                   component={item.screen}
                 />
               ))}
